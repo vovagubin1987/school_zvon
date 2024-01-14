@@ -150,6 +150,13 @@ void sendSetupArg(String argS) {
 void startWIFI() {
   if (startSTA()) {
         Serial.println("Start sta ok");
+        if ((WiFi.getListenInterval() != 1) || (WiFi.getSleepMode() != WIFI_MODEM_SLEEP)) //WiFi.getListenInterval() appeared in SDK pre-V3
+  /*{
+    WiFi.setSleepMode(WIFI_MODEM_SLEEP, 1); //sleep 0..10 DTIM-listen intervals (DTIM is included in Beacon packet), values > 3 can cause STA to miss broadcast data
+
+    delay(10); //without delay settings above above may not be accepted
+  }*/
+  WiFi.setSleepMode(WIFI_NONE_SLEEP);
 
   }
   else {
@@ -221,11 +228,11 @@ boolean wifiConnect() {
   if (tries == 0) tries = 11;
   uint8_t pin = pinTest(getSetupInt(wifiBlinkS));
  // if (pin != 17)   pinMode(pin, OUTPUT);
-  while (--tries && WiFi.status() != WL_CONNECTED)
+  while (WiFi.status() != WL_CONNECTED)
   {
     //Мигаем сетодиодом при попытке подключится к роутеру
     //if (pin != 0)   digitalWrite(pin, HIGH);
-    delay(1500);
+    //delay(1500);
     //
     Serial.println("Recconnect");
     //if (pin != 0)  digitalWrite(pin, LOW);
@@ -233,6 +240,7 @@ boolean wifiConnect() {
   }
   if (WiFi.status() == WL_CONNECTED){
     return true;
+    WiFi.setSleepMode(WIFI_NONE_SLEEP);
     } else{
   return false;}
 }

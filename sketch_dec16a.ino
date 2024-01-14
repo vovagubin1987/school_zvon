@@ -155,18 +155,21 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 HTTP.handleClient(); // Работа Web сервера
-yield();
+//yield();
 podzvonka(buttong);
 delay(0);
 podzvonka(times);
 dnsServer.processNextRequest();
-yield();
+//yield();
 //handleSSDP();
 yield();
-HTTPWAN.handleClient();
+//HTTPWAN.handleClient();
   yield();
 
   
+  WiFi.setSleepMode(WIFI_NONE_SLEEP);
+
   //webSocket.loop(); // Работа webSocket
   //dnsServer.processNextRequest(); // Для работы DNS в режиме AP
+
 }
