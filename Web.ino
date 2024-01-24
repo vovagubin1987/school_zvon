@@ -150,9 +150,9 @@ HTTP.on("/t", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+   // message += HTTP.argName(i) + ": ";      // получить имя параметра
+    //message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupT("s"+ HTTP.argName(i), HTTP.arg(i));
     zapmt((HTTP.argName(i)).toInt(), (HTTP.arg(i)).toInt());
     //saveConfigSetupS1();
@@ -169,9 +169,9 @@ HTTP.on("/s1", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+    //message += HTTP.argName(i) + ": ";      // получить имя параметра
+    //message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupS1("s"+ HTTP.argName(i), HTTP.arg(i));
     zapms1((HTTP.argName(i)).toInt(), (HTTP.arg(i)).toInt());
     //saveConfigSetupS1();
@@ -181,16 +181,16 @@ HTTP.on("/s1", HTTP_GET, []() {
     //String reqvest = "{\"action\": \"page.htm?configs&" + set + "\"}";
     saveConfigSetupS1();
     message +="<button onclick=\"history.back()\">Click here to go back</body></html>";
-    message +=configSetupS1;
+    //message +=configSetupS1;
     httpOkHtml(message);
   });
 HTTP.on("/s11", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+    //message += HTTP.argName(i) + ": ";      // получить имя параметра
+    //message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupS11("s"+ HTTP.argName(i), HTTP.arg(i));
     zapms1((HTTP.argName(i+16)).toInt(), (HTTP.arg(i+16)).toInt());
     //saveConfigSetupS1();
@@ -200,7 +200,7 @@ HTTP.on("/s11", HTTP_GET, []() {
     //String reqvest = "{\"action\": \"page.htm?configs&" + set + "\"}";
     saveConfigSetupS11();
     message +="<button onclick=\"history.back()\">Click here to go back</body></html>";
-    message +=configSetupS1;
+    //message +=configSetupS1;
     httpOkHtml(message);
   });
 
@@ -209,9 +209,9 @@ HTTP.on("/s2", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+    //message += HTTP.argName(i) + ": ";      // получить имя параметра
+    //message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupS2("s"+HTTP.argName(i), HTTP.arg(i));
     zapms2((HTTP.argName(i)).toInt(), (HTTP.arg(i)).toInt());
     //saveConfigSetupS1();
@@ -227,9 +227,9 @@ HTTP.on("/s2", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+    //message += HTTP.argName(i) + ": ";      // получить имя параметра
+   // message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupS22("s"+HTTP.argName(i), HTTP.arg(i));
     zapms2((HTTP.argName(i+16)).toInt(), (HTTP.arg(i+16)).toInt());
     //saveConfigSetupS1();
@@ -247,9 +247,9 @@ HTTP.on("/s3", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+   // message += HTTP.argName(i) + ": ";      // получить имя параметра
+   // message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupS3(HTTP.argName(i), HTTP.arg(i));
     zapms3((HTTP.argName(i)).toInt(), (HTTP.arg(i)).toInt());
     //saveConfigSetupS1();
@@ -261,13 +261,63 @@ HTTP.on("/s3", HTTP_GET, []() {
     message +="<button onclick=\"history.back()\">Click here to go back</body></html>";
     httpOkHtml(message);
   });
+  HTTP.on("/api", HTTP_GET, []() {
+  String message="<html><head></head><body>";
+  for (int i = 0; i < HTTP.args(); i++) 
+  {
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+   // message += HTTP.argName(i) + ": ";      // получить имя параметра
+   //message += HTTP.arg(i) + "\n";          // получить значение параметра
+   message="no";
+    if (HTTP.argName(i)=="key"){
+      message="pr";
+      if ((HTTP.arg(i)).toInt()==ESP.getChipId()){
+        for (int ii=0;ii<HTTP.args();ii++){
+           if (HTTP.argName(ii)=="zvon"){
+             message="ok";
+             switch (HTTP.arg(ii).toInt()){
+               case 1:
+                times=1;
+                break;
+              case 2:
+                times=2;
+                break;
+              case 3:
+                times=3;
+                break;
+              case 4:
+                buttong=4;
+                break;
+              case 5:
+                buttong=5;
+                break;
+              case 6:
+                buttong=6;
+                break;
+              
+             }
+
+           }
+        }
+      }
+    }
+    //saveConfigSetupS1();
+    } 
+    //sendSetup(, set);
+    //saveConfigSetup();
+    //String reqvest = "{\"action\": \"page.htm?configs&" + set + "\"}";
+    //saveConfigSetupS33();
+    //message +="<button onclick=\"history.back()\">Click here to go back</body></html>";
+    //httpOkHtml(message);
+    httpOkText(message);
+  });
 HTTP.on("/s33", HTTP_GET, []() {
   String message="<html><head></head><body>";
   for (int i = 0; i < HTTP.args(); i++) 
   {
-    message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
-    message += HTTP.argName(i) + ": ";      // получить имя параметра
-    message += HTTP.arg(i) + "\n";          // получить значение параметра
+    //message += "Arg nº" + (String)i + " –> "; // добавить текущее значение счетчика
+   // message += HTTP.argName(i) + ": ";      // получить имя параметра
+   //message += HTTP.arg(i) + "\n";          // получить значение параметра
     sendSetupS33(HTTP.argName(i), HTTP.arg(i));
     zapms3((HTTP.argName(i+16)).toInt(), (HTTP.arg(i+16)).toInt());
     //saveConfigSetupS1();
@@ -277,7 +327,7 @@ HTTP.on("/s33", HTTP_GET, []() {
     //String reqvest = "{\"action\": \"page.htm?configs&" + set + "\"}";
     saveConfigSetupS33();
     message +="<button onclick=\"history.back()\">Click here to go back</body></html>";
-    httpOkHtml(message);
+    //httpOkHtml(message);
   });
 
 HTTP.on("/k", HTTP_GET, []() {

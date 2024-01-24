@@ -38,7 +38,8 @@ WiFiUDP udp;
 #include "MAX7219_8_Digit_Driver.h"
 
 // make an instance of MAX7219_Digit called My_Display and set CS pin
-//MAX7219_8_Digit_Driver My_Display(MAX7219_CS, Number_MAX7219);
+//
+MAX7219_8_Digit_Driver My_Display(MAX7219_CS, Number_MAX7219);
 
 
 //#include "wifi.h"
@@ -84,7 +85,8 @@ void setup() {
   //pinMode(buttonPin1,INPUT_PULLUP);
   //pinMode(buttonPin2,INPUT_PULLUP);
 digitalWrite(relePin, LOW);
-  //My_Display.String_To_Buffer("   H1   ", Default_Brightness);
+  //
+  My_Display.String_To_Buffer("   H1   ", Default_Brightness);
   delay(1000);
   // put your setup code here, to run once:
   Serial.begin(115200);
@@ -127,7 +129,7 @@ digitalWrite(relePin, LOW);
   t_time.attach_ms(1000,f_time);
   t_ntp.attach(3600,f_ntp);
   t_knopki.attach_ms(500,f_knopki);
-  t_zvonok.attach(20,zvonok);
+  t_zvonok.attach(5,f_zvonok);
   //запуск нтп при загрузке
       Serial.println("Start ntp");
 
@@ -141,7 +143,7 @@ digitalWrite(relePin, LOW);
     Serial.println("Start readconf");
 
 readconf();//заполняем массивы шаблонов звонков и массив привязки дней к шаблону из файла
-digitalWrite(relePin, HIGH);
+//digitalWrite(relePin, HIGH);
 
 digitalWrite(relePin, LOW);
 //pinMode(buttonPin1, INPUT_PULLUP);
@@ -158,7 +160,10 @@ HTTP.handleClient(); // Работа Web сервера
 //yield();
 podzvonka(buttong);
 delay(0);
+//
 podzvonka(times);
+//
+
 dnsServer.processNextRequest();
 //yield();
 //handleSSDP();

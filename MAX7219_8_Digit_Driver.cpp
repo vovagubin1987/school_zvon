@@ -30,7 +30,8 @@ MAX7219_8_Digit_Driver::MAX7219_8_Digit_Driver(int Pin, int MAX7219_Chips) {
   // only needed for ESP8266, does not work with UNO, the larger the number the faster the SPI
   // 4000000L gives a similar purformance speed to an UNO, 15000000L is much too fast for the MAX7219
   // 8000000L updates a 24 digit display in 750uS
-  SPI.setFrequency(8000000L);
+  //SPI.setFrequency(8000000L);
+  SPI.setFrequency(4000000L);
 #endif
 
 } // end of function

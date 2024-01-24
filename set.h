@@ -1,6 +1,6 @@
 ESP8266HTTPUpdateServer httpUpdater;
 ESP8266WebServer HTTP(80);
-ESP8266WebServer HTTPWAN(8080);
+//ESP8266WebServer HTTPWAN(8080);
 // Для файловой системы
 File fsUploadFile;
 // Для работы символьных имен в режиме AP
@@ -25,7 +25,7 @@ uint8_t gGod=0;
 uint8_t gHours=0;
 uint8_t gMinutes=0;
 uint8_t gSec=0;
-uint8_t gDays=1;
+uint8_t gDays=7;
 int gflag1=0;
 const byte DS1307 = 0x68; // I2C адрес таймера DS3231
 
@@ -44,7 +44,8 @@ int ms3h[36];
 int ms3m[36];
 int ms3type[36];
 int mst[6];
-int zad[3];//0-часы 1-минуты 3-статус
+int zad[4]={0,0,0,0};//0-часы 1-минуты 3-статус
+//zad[3]=1;
 uint8_t gTimeZvonokNextHours;
 uint8_t gTimeZvonokNextMinutes;
 
@@ -54,7 +55,7 @@ uint8_t gTimeZvonokNextMinutes;
 StringCommand sCmd;  
 
 
-
+String tM=" ";
 
 String Lang;                    // файлы языка web интерфейса
 String chipID;

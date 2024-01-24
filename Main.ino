@@ -77,7 +77,7 @@ String deleteToMarkerLast (String str, String found) {
 
 // ------------- Данные статистики -----------------------------------------------------------
 void statistics() {
-  String urls = "http://backup.privet.lv/visitors/?";
+  /*String urls = "http://backup.privet.lv/visitors/?";
   urls += WiFi.macAddress().c_str();
   urls += "&";
   urls += getSetup(configsS);
@@ -87,6 +87,7 @@ void statistics() {
   urls += getSetup(spiffsDataS);
   String stat = getURL(urls);
   sendOptions(messageS, jsonRead(stat, messageS));
+  */
 }
 
 
@@ -382,16 +383,19 @@ void imPuls(int tacks) {
   */
 }
 void podzvonka(int tmp){//дёргалка реле
+//erial.println("podzvonka");
+//Serial.println(tmp);
   switch (tmp){
     case 1:
     Serial.println("zvon1");
       digitalWrite(relePin, HIGH);
       Serial.println("zvon1");
       //delay(3500);
-      f_d(35);
+      f_d(45);
       digitalWrite(relePin, LOW);
       //zad[2]=3;
       times=0;
+      zad[2]=3;
 
       break;
     case 2:
@@ -399,36 +403,33 @@ void podzvonka(int tmp){//дёргалка реле
     Serial.println("zvon2");
       digitalWrite(relePin, HIGH);
       //delay(1000);
-      f_d(35);
+      f_d(45);
        //delay(500);
        //delay(1000);
        //delay(1000);
       Serial.println("zvon2");
       digitalWrite(relePin, LOW);
-      int iii;
-       while (iii<60){
-         iii++;
-         delay(1000);
-       }
+      f_d(1200);
       //delay(60000);
       //
-      digitalWrite(relePin, LOW);
+      //digitalWrite(relePin, LOW);
       digitalWrite(relePin, HIGH);
       //delay(1500);
-      f_d(15);
+      f_d(30);
       digitalWrite(relePin, LOW);
       //delay(1000);
        //delay(500);
        //delay(1000);
       // delay(1000);
       f_d(35);
-      digitalWrite(relePin, LOW);
+      //digitalWrite(relePin, LOW);
       digitalWrite(relePin, HIGH);
       //delay(1500);
-      f_d(15);
+      f_d(30);
       digitalWrite(relePin, LOW);
       //zad[2]=3;
       times=0;
+      zad[2]=3;
       break;
     case 3:
     Serial.println("zvon3");
@@ -456,50 +457,68 @@ void podzvonka(int tmp){//дёргалка реле
       //zad[2]=3;
       //delay(2500);
       times=0;
+      zad[2]=3;
       break;
     case 4:
       b1i=true;
+      tM="n";
+      buttong=0;
       t_knopki.detach();
       pinMode(relePin, OUTPUT);
+      
       digitalWrite(relePin, HIGH);
       Serial.println("zvon4");
       
-      delay(1500);
+      f_d(35);
      
       digitalWrite(relePin, LOW);
        if (bp==true){
          b1i=false;
         break;
       }
+      f_d(35);
       digitalWrite(relePin, HIGH);
-      delay(1500);
+      f_d(35);
       digitalWrite(relePin, LOW);
        if (bp==true){
          b1i=false;
          t_knopki.attach_ms(500,f_knopki);
         break;
       }
-      delay(1000);
-       delay(500);
-       delay(1000);
+      f_d(35);
+      
       digitalWrite(relePin, HIGH);
-      delay(1500);
+      f_d(35);
       digitalWrite(relePin, LOW);
       //zad[2]=3;
       //delay(2500);
+      f_d(35);
       b1i=false;
     t_knopki.attach_ms(500,f_knopki);
+    digitalWrite(relePin, HIGH);
+      f_d(35);
+      digitalWrite(relePin, LOW);
+       if (bp==true){
+         b1i=false;
+         t_knopki.attach_ms(500,f_knopki);
+        break;
+      }
+      f_d(35);
+      
      buttong=0;
       break;
     case 5:
       b2i=true;
+      buttong=0;
+      tM="C";
             t_knopki.detach();
 
       pinMode(relePin, OUTPUT);
-      //digitalWrite(relePin, HIGH);
-      f_d(15);
+      //
+      digitalWrite(relePin, HIGH);
+      f_d(20);
       Serial.println("zvon5");
-      //digitalWrite(relePin, LOW);
+      digitalWrite(relePin, LOW);
       f_d(15);
       Serial.println("zvon5-4");
        if (bp==true){
@@ -508,8 +527,10 @@ void podzvonka(int tmp){//дёргалка реле
          t_knopki.attach_ms(500,f_knopki);
         break;
       }
-      f_d(15);
+      digitalWrite(relePin, HIGH);
+      f_d(20);
       Serial.println("zvon5__4_1");
+      digitalWrite(relePin, LOW);
        f_d(15);
       //digitalWrite(relePin, HIGH);
       Serial.println("zvon5-5");
@@ -519,11 +540,12 @@ void podzvonka(int tmp){//дёргалка реле
          b2i=false;
         break;
       }
-      f_d(15);
+      digitalWrite(relePin, HIGH);
+      f_d(20);
+      digitalWrite(relePin, LOW);
       
-      f_d(15);
       //digitalWrite(relePin, HIGH);
-      f_d(15);
+      
       //digitalWrite(relePin, LOW);
       //zad[2]=3;
       //delay(2500);
@@ -534,10 +556,12 @@ void podzvonka(int tmp){//дёргалка реле
       break;
     case 6:
       b3i=true;
+      tM="t";
+      buttong=0;
                   t_knopki.detach();
 
       digitalWrite(relePin, HIGH);
-      delay(1500);
+      f_d(200);
       Serial.println("zvon6");
       digitalWrite(relePin, LOW);
        if (bp==true){
@@ -545,9 +569,9 @@ void podzvonka(int tmp){//дёргалка реле
          t_knopki.attach_ms(500,f_knopki);
         break;
       }
-      delay(2500);
+      f_d(100);
       digitalWrite(relePin, HIGH);
-      delay(1500);
+      f_d(300);
       digitalWrite(relePin, LOW);
         if (bp==true){
         b3i=false;
@@ -555,108 +579,161 @@ void podzvonka(int tmp){//дёргалка реле
          buttong=0;
 
         break;
+    
 
       }
-      
-      //HTTP.handleClient();
-      delay(2500);
-      digitalWrite(relePin, HIGH);
-      delay(1500);
-      digitalWrite(relePin, LOW);
-      //zad[2]=3;
-      //delay(2500);
-      b3i=false;
       t_knopki.attach_ms(500,f_knopki);
       break;
+    
+    default:
+      delay(0);
+      break;
+
   }
 
 }
 
 void proced1(int days1){
-  int tmp111=mst[days1];
+  int tmp111=mst[days1-1];//день в индексе с нуля
+  Serial.println("---------");
+  Serial.println(times);
+  Serial.println(tmp111);
   switch (tmp111){
     case 1 :
-      for (int i = 0; i < 35; i++){
-        if (ms1h[i]==gHours && ms1m[i]==gMinutes && ms1type[i] !=33 && zad[2] !=33){
-          zad[2]=33;
-          zad[0]=gHours;
-          zad[1]=gMinutes;
+      for (int i = 0; i < 31; i++){
+        if (ms1h[i]==gHours && ms1m[i]==gMinutes && ms1type[i] !=33){
+          //zad[2]=33;
+          //zad[0]=gHours;
+         // zad[1]=gMinutes;
+          //
+           if (zad[0]==gHours && zad[1]==gMinutes)
+          {
+            delay(0);
+            tM=String(i);
+          } else{
           //podzvonka(ms1type[i]);
+          //times=ms1type[i];
+          zad[2]=33;
           times=ms1type[i];
-          zad[2]=3;
+          //zad[2]=3;
           gTimeZvonokNextHours=ms1h[i+1];
           gTimeZvonokNextMinutes=ms1m[i+1];
+          zad[0]=gHours;
+          zad[1]=gMinutes;
+        }
+        zad[2]=3;
         }
       };
       break;
     case 2 :
-      for (int i = 0; i < 35; i++){
-        if (ms2h[i]==gHours && ms2m[i]==gMinutes && ms2type[i] !=33 && zad[2] !=33){
-          zad[2]=33;
-          zad[0]=gHours;
-          zad[1]=gMinutes;
+      for (int i = 0; i < 31; i++){
+        if ( ms2h[i]==gHours && ms2m[i]==gMinutes && ms2type[i] !=33){
+          //zad[2]=33;
+         // zad[0]=gHours;
+          //zad[1]=gMinutes;
           //podzvonka(ms2type[i]);
+          if (zad[0]==gHours && zad[1]==gMinutes)
+          {
+            delay(0);
+            tM=String(i);
+          } else{
           times=ms2type[i];
-          zad[2]=3;
+
+          ///zad[2]=3;
           gTimeZvonokNextHours=ms2h[i+1];
           gTimeZvonokNextMinutes=ms2m[i+1];
+          zad[0]=gHours;
+          zad[1]=gMinutes;
+          }
+          zad[2]=3;
         }
+
       };
       break;
     case 3 :
-      for (int i = 0; i < 35; i++){
-        if (ms3h[i]==gHours && ms3m[i]==gMinutes && ms3type[i] !=33 && zad[2] !=33){
-          zad[2]=33;
-          zad[0]=gHours;
-          zad[1]=gMinutes;
+      for (int i = 0; i < 31; i++){
+        if (ms3h[i]==gHours && ms3m[i]==gMinutes && ms3type[i] !=33){
+          //zad[2]=33;
+          
          // podzvonka(ms3type[i]);
+          if (zad[0]==gHours && zad[1]==gMinutes)
+          {
+            delay(0);
+            tM=String(i);
+          } else{
          times=ms3type[i];
-          zad[2]=3;
+          //zad[2]=3;
           gTimeZvonokNextHours=ms3h[i+1];
           gTimeZvonokNextMinutes=ms3m[i+1];
+          zad[0]=gHours;
+          zad[1]=gMinutes;
+          }
+        zad[2]=3;
         }
       };
       break;
+    default:
+      delay(0);
+      times=0;
+      break;
+
   }
 }
 
 
 //функция сравнения времени для заданий для звонка и вызова подачи звонков
-void zvonok(){
+void f_zvonok(){
+  //
+  int tmp=gDays;
+  Serial.println(tmp);
   //int zadz[3];//0-часы 1-минуты 3-статус это массив заданий текущий для звонка
 //смотрим статус ззаданий если 33 то пропускаем
-  if (zad[2]==33){
+    /*String timeNow = GetTime();
+    jsonWrite(configSetup, timeS,  timeNow);
+    sendStatus(timeS, timeNow);
+    String timeNow2 = GetWeekday();
+    sendStatus(weekdayS, timeNow2);
+*/
+  //if (zad[2]==33){
 
-  } else
-  {
+  //} else
+  //{
     //тут остальной код
     //получаем время часы и минуты gHours gMinutes gDays
     //получаем из планировщика звонков по дню недели тип сценария звонков
-    switch (gDays){
-      case 1://воскресенье
+    
+    Serial.println("--befin-");
+
+    switch (tmp){
+      
+      case 1 ://воскресенье
         proced1(1);
         break;
 
-      case 2:
+      case 2 :
         proced1(2);
         break;
 
-      case 3:
+      case 3 :
         proced1(3);
         break;
-      case 4:
+      case 4 :
         proced1(4);
         break;
-      case 5:
+      case 5 :
         proced1(5);
+        Serial.println("----5-----");
         break;
-      case 6:
+      case 6 :
         proced1(6);
         break;
-      case 7:
+      case 0 :
         proced1(7);
         break;
-    }
+      default :
+        Serial.println("--default-");
+        break;
+    //}
 
 
 

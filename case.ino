@@ -933,7 +933,7 @@ for (int i = 1; i < 16; i++)
     //saveConfigSetupS1();
     } 
 
-kz="";
+kz="s";
  tmp1="";
  tmp2="";
 
@@ -944,17 +944,20 @@ for (int i = 1; i < 8; i++)
     k=kz+i;
     tmp3=f_44(k,i,tmp1);
     int get=getAllStatusInt(tmp3, k);
-    //String k1 = k.substring(1);
-    String k1=k;
+    //
+    String k1 = k.substring(1);
+    //String k1=k;
     zapmt((k1).toInt(), get);
     } 
 
+Serial.println("h");
 for(int i = 0; i < 35; i++)
 {
   Serial.print(ms1h[i]);
   Serial.print("**");
 };
 Serial.println("+");
+Serial.println("m");
 
 for(int i = 0; i < 35; i++)
 {
@@ -963,6 +966,7 @@ for(int i = 0; i < 35; i++)
 }
 
 Serial.println("+");
+Serial.println("t");
 for(int i = 0; i < 35; i++)
 {
   Serial.print(ms1type[i]);

@@ -50,6 +50,7 @@ void f_time(){
   gGod=bcdToDec(t[6]);
   gHours=bcdToDec(t[2]);
   gMinutes=bcdToDec(t[1]);
+  gSec=bcdToDec(t[0]);
   gDays=bcdToDec(t[3]);
   gflag1=0;
     

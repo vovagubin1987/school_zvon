@@ -150,8 +150,8 @@ void sendSetupArg(String argS) {
 void startWIFI() {
   if (startSTA()) {
         Serial.println("Start sta ok");
-        if ((WiFi.getListenInterval() != 1) || (WiFi.getSleepMode() != WIFI_MODEM_SLEEP)) //WiFi.getListenInterval() appeared in SDK pre-V3
-  /*{
+        /*if ((WiFi.getListenInterval() != 1) || (WiFi.getSleepMode() != WIFI_MODEM_SLEEP)) //WiFi.getListenInterval() appeared in SDK pre-V3
+  {
     WiFi.setSleepMode(WIFI_MODEM_SLEEP, 1); //sleep 0..10 DTIM-listen intervals (DTIM is included in Beacon packet), values > 3 can cause STA to miss broadcast data
 
     delay(10); //without delay settings above above may not be accepted
@@ -219,16 +219,16 @@ boolean startSTA() {
     sendSetup(subnetS, WiFi.subnetMask().toString());
     //statistics();
     return true;
-  } else{
+  } 
   return false;
-  };
 }
 boolean wifiConnect() {
   uint8_t tries = getSetupInt(wifiConnectS);
+  tries=0;
   if (tries == 0) tries = 11;
   uint8_t pin = pinTest(getSetupInt(wifiBlinkS));
  // if (pin != 17)   pinMode(pin, OUTPUT);
-  while (WiFi.status() != WL_CONNECTED)
+  while (--tries && WiFi.status() != WL_CONNECTED)
   {
     //Мигаем сетодиодом при попытке подключится к роутеру
     //if (pin != 0)   digitalWrite(pin, HIGH);
@@ -236,13 +236,13 @@ boolean wifiConnect() {
     //
     Serial.println("Recconnect");
     //if (pin != 0)  digitalWrite(pin, LOW);
-    delay(1500);
+    delay(1000);
   }
   if (WiFi.status() == WL_CONNECTED){
     return true;
     WiFi.setSleepMode(WIFI_NONE_SLEEP);
-    } else{
-  return false;}
+    } 
+  return false;
 }
 
 //-------------Включение режима AP конфигурация в строке configSetup

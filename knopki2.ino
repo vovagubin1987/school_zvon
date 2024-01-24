@@ -5,6 +5,9 @@ void f_knopki()
 {
 pinMode(buttonPin2, INPUT_PULLUP);
 pinMode(buttonPin1, INPUT);
+Serial.println(ESP.getFreeHeap());
+//HTTP.handleClient();
+Serial.println(WiFi.localIP());
 int button1State = digitalRead(buttonPin1);
 //
 int button2State = digitalRead(buttonPin2);
